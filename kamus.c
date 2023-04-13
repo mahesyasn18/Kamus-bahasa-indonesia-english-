@@ -10,7 +10,7 @@ program description: Program tugas besar mata kuliah Struktur Data dan Algoritma
 
 #include "kamus.h"
 
-void entryDatatoFile(infotype idn, infotype eng) {
+void entry_data_to_file(infotype idn, infotype eng) {
     FILE *fp;
     fp = fopen("file.dat", "a+");
 
@@ -23,7 +23,7 @@ void entryDatatoFile(infotype idn, infotype eng) {
     fclose(fp);
 }
 
-Node entryDatatoTree(Node root, infotype idn, infotype eng) {
+Node entry_data_to_tree(Node root, infotype idn, infotype eng) {
     Node parent = NULL;
     Node current = root;
     
@@ -34,10 +34,10 @@ Node entryDatatoTree(Node root, infotype idn, infotype eng) {
         } else if (strcmp(idn, current->idn) > 0) {
             current = current->right;
         } else {
-            entryTranslatetoLinkedList(&(current->translate), strtok(eng, ","));
+            entry_translate_to_linkedlist(&(current->translate), strtok(eng, ","));
             char *token = strtok(NULL, ",");
             while (token != NULL) {
-                entryTranslatetoLinkedList(&(current->translate), token);
+                entry_translate_to_linkedlist(&(current->translate), token);
                 token = strtok(NULL, ",");
             }
             return root;
@@ -49,10 +49,10 @@ Node entryDatatoTree(Node root, infotype idn, infotype eng) {
     newNode->left = NULL;
     newNode->right = NULL;
     newNode->translate = NULL;
-    entryTranslatetoLinkedList(&(newNode->translate), strtok(eng, ","));
+    entry_translate_to_linkedlist(&(newNode->translate), strtok(eng, ","));
     char *token = strtok(NULL, ",");
     while (token != NULL) {
-        entryTranslatetoLinkedList(&(newNode->translate), token);
+        entry_translate_to_linkedlist(&(newNode->translate), token);
         token = strtok(NULL, ",");
     }
     
@@ -68,7 +68,7 @@ Node entryDatatoTree(Node root, infotype idn, infotype eng) {
 }
 
 
-void entryTranslatetoLinkedList(address *head, infotype eng) {
+void entry_translate_to_linkedlist(address *head, infotype eng) {
     address temp = *head;
 
     if (temp == NULL) {
@@ -88,7 +88,7 @@ void entryTranslatetoLinkedList(address *head, infotype eng) {
     temp->next->next = NULL;
 }
 
-void showTranslate(address head) {
+void show_translate(address head) {
     address temp = head;
 
     while (temp != NULL) {
@@ -100,16 +100,16 @@ void showTranslate(address head) {
 }
 
 
-void printTree(Node root) {
+void print_tree(Node root) {
     if (root != NULL) {
         printf("%s: ", root->idn);
-        showTranslate(root->translate);
-        printTree(root->left);
-        printTree(root->right);
+        show_translate(root->translate);
+        print_tree(root->left);
+        print_tree(root->right);
     }
 }
 
-Node loadDatafromFile(Node root) {
+Node load_data_from_file(Node root) {
     FILE *fp;
     fp = fopen("file.dat", "r");
 
@@ -120,14 +120,14 @@ Node loadDatafromFile(Node root) {
 
     infotype idn, eng;
     while (fscanf(fp, "%s %s", idn, eng) == 2) {
-        root = entryDatatoTree(root, idn, eng);
+        root = entry_data_to_tree(root, idn, eng);
     }
 
     fclose(fp);
     return root;
 }
 
-int isLexicographic(Node root) {
+int is_lexicographic(Node root) {
     if (root == NULL) {
         return 1;
     }
@@ -140,15 +140,15 @@ int isLexicographic(Node root) {
         return 0;
     }
 
-    return isLexicographic(root->left) && isLexicographic(root->right);
+    return is_lexicographic(root->left) && is_lexicographic(root->right);
 }
 
-void inorderTraversal(Node root) {
+void inorder_traversal(Node root) {
     if (root != NULL) {
-        inorderTraversal(root->left);
+        inorder_traversal(root->left);
         printf("%s: ", root->idn);
-        showTranslate(root->translate);
-        inorderTraversal(root->right);
+        show_translate(root->translate);
+        inorder_traversal(root->right);
     }
 }
 
