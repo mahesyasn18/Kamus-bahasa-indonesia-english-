@@ -33,18 +33,18 @@ typedef struct BTNode{
 
 
 
-void entryDatatoFile(infotype idn, infotype eng);
+void entry_data_to_file(infotype idn, infotype eng);
 
-Node entryDatatoTree(Node root, infotype idn, infotype eng);
+Node entry_data_to_tree(Node root, infotype idn, infotype eng);
 
-void entryTranslatetoLinkedList(address *head, infotype eng);
+void entry_translate_to_linkedlist(address *head, infotype eng);
 
-void showTranslate(address head);
+void show_translate(address head);
 
-Node loadDatafromFile(Node root);
+Node load_data_from_file(Node root);
 
-void printTree(Node root);
+void print_tree(Node root);
 
-int isLexicographic(Node root); 
+int is_lexicographic(Node root); 
 
-void inorderTraversal(Node root);
+void inorder_traversal(Node root);
