@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
                     current = current->right;
                 } else {
                     printf("Hasil Translate dari %s adalah: ", indonesia);
-                    showTranslate(current->translate);
+                    show_translate(current->translate);
                     break;
                 }
             }
@@ -61,17 +61,17 @@ int main(int argc, char *argv[]) {
             scanf("%s", &indonesia);
             printf("Masukkan Kata translate dalam Bahasa Inggris (pisahkan beberapa terjemahan dengan koma): ");
             scanf("%s", &english);
-            entryDatatoFile(indonesia, english);
-            root = entryDatatoTree(root, indonesia, english);
+            entry_data_to_file(indonesia, english);
+            root = entry_data_to_tree(root, indonesia, english);
             printf("Berhasil Menambahkan Data ke Kamus\n");
             break;
         case 3:
         	system("cls");
             printf("\nData Kamus\n");
-            inorderTraversal(root);
+            inorder_traversal(root);
             break;
         case 4:
-			if (isLexicographic(root)) {
+			if (is_lexicographic(root)) {
 			    printf("Binary tree is lexicographically sorted\n");
 			} else {
 			    printf("Binary tree is not lexicographically sorted\n");
